@@ -1,0 +1,43 @@
+DDL => Data Definition Language
+
+Commands :- CREATE, ALTER, DROP
+
+1. CREATE :-
+
+1. Create a Database :- CREATE DATABASE dc09db;
+
+2. Create Table :-
+=>
+CREATE TABLE Student(StudentId INT PRIMARY KEY AUTO_INCREMENT, email varchar(50), address varchar(100), zipcode varchar(10));
+CREATE TABLE Courses(cid INT PRIMARY KEY AUTO_INCREMENT, cname varchar(50), fees float, duration varchar(20));
+
+2. ALTER Table :-
+
+=> column ne add karva mate :-
+ALTER TABLE Student ADD COLUMN contact varchar(50);
+
+=> Exisiting column ne modify or change karva mate :-
+ALTER TABLE Student CHANGE contact Phone int;
+
+=> Exisiting column ne Drop karva mate
+ALTER TABLE Student DROP COLUMN Phone;
+
+=> Whole table ne DROP karva mate
+DROP TABLE Student;
+
+* create a primary and Foriegn Key to the table :-
+CREATE TABLE enroll(enid INT PRIMARY KEY AUTO_INCREMENT, sid int, cid int, FORIEGN KEY(sid) REFERENCE Student
+(StudentId), FORIEGN KEY(cid) REFERENCE Courses(cid));
+
+=> koi Exisiting table ni under table ma column with Foriegn key ne remove karva mate :-
+command :-
+
+Step 1 :- first remove Foriegn key fk_teacher 
+
+ALTER table students DROP Foriegn key fk_teacher;
+
+Step 2:- then drop the column teacher_id
+
+ALTER table students DROP COLUMN teacher_id;
+
+

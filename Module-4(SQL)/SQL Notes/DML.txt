@@ -1,0 +1,43 @@
+DML =  Data Manipulation Language
+
+Commands = INSERT, UPDATE and DELETE
+
+1. INSERT :-
+
+Table :- Student
+INSERT INTO Student (studentname,email,address,zipcode)VALUES('Yash','tailory123@gmail.com','Bilimora','396321');
+INSERT INTO Student (studentname,email,address,zipcode)VALUES('Raj','raj12@gmail.com','Surat','394561');
+INSERT INTO Student (studentname,email,address,zipcode)VALUES('Sahil','sahil13@gmail.com','Udhna','396521');
+INSERT INTO Student (studentname,email,address,zipcode)VALUES('Kenil','kenil24@gmail.com','Navsari','396457');
+
+Table :- Courses
+INSERT INTO Courses (cname,fees,duration)VALUES('Python','65000','6 Months');
+INSERT INTO Courses (cname,fees,duration)VALUES('Java','75000','10 Months');
+INSERT INTO Courses (cname,fees,duration)VALUES('Android','55000','6 Months');
+
+Table :- Enroll
+INSERT INTO enroll (sid,cid)VALUES('1','1');
+INSERT INTO enroll (sid,cid)VALUES('2','3');
+INSERT INTO enroll (sid,cid)VALUES('3','2');
+INSERT INTO enroll (sid,cid)VALUES('4','1');
+
+2. UPDATE :-
+
+UPDATE Student SET email='yash123@gmail.com' where StudentId = 1; => update the record for Table
+
+3. DELETE :-
+
+=> Primary key jo hoi to record delete na thy parent no (means Student) but forign key hoi table
+ma to record delete thy che
+
+DELETE FROM Student where StudentId = 2; 
+=> the data does not delete because student table is a
+parent table and it is also declare a primary key (studentId) so table does not delete.
+
+DELETE FROM enroll where sid = 2;
+=> the data is delete because (sid) as a forign key. 
+
+print the table as a output
+SELECT *FROM Student;
+SELECT *FROM Courses;
+SELECT *FROM enroll;

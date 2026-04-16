@@ -1,0 +1,34 @@
+#creating and declaring and also how to create a cursor
+
+DELIMITER //
+
+CREATE PROCEDURE productPriceIncre()
+BEGIN
+    DECLARE pro_id INT;
+    DECLARE newPrice INT;
+    DECLARE isDone INT DEFAULT 0;
+
+    DECLARE productCur CURSOR FOR
+        SELECT pid, price FROM product;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET isDone = 1;
+
+    OPEN productCur;
+
+    readLoop: LOOP
+        FETCH productCur INTO pro_id, newPrice;
+
+        IF isDone = 1 THEN
+            LEAVE readLoop;
+        END IF;
+
+        UPDATE product
+        SET price = newPrice + 200
+        WHERE pid = pro_id;
+
+    END LOOP;
+
+    CLOSE productCur;
+END //
+
+DELIMITER ;

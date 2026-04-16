@@ -1,0 +1,160 @@
+DQL = Data Query Language
+
+Commands :- SELECT
+
+=> all record na data ne display karva mate
+SELECT *FROM Student;
+
+=> SELECT *FROM student where studentId=1;
+particularly koi data na record ne fetch karva mate
+
+=>SELECT studentname,email FROM student;
+particularly koi column na data joyta hoi to above command lakhvo.
+
+=> Alias => Data na Title aapva mate
+SELECT studentname as StudentName, email as Email FROM student;
+
+=> Order by :- data ne Ascending and Descnding karva mate
+SELECT *FROM Student ORDER BY studentname ASC; => for the Ascending
+SELECT *FROM Student ORDER BY studentname DESC; => for the Descnding
+
+=======================================================================================
+
+SQL AND OR and not OPERATOR :-
+
+SELECT *FROM student WHERE studentId=1 AND zipcode=396321; => AND
+SELECT *FROM student WHERE studentId=2 OR zipcode; => OR
+SELECT *FROM student WHERE NOT studentId=1; => NOT
+
+=======================================================================================
+
+SQL LIMIT :-
+SELECT *FROM student LIMIT 0,2;
+
+=======================================================================================
+
+SQL Aggregate Functions :-
+min,max,sum,avg,count
+
+Min => SELECT MIN(fees) as Minimum_Price,cname FROM courses;
+Max => SELECT MAX(fees) as Maximum_Price,cname FROM courses;
+Sum => SELECT SUM(fees) as Total_fees FROM courses;
+Avg => SELECT AVG(fees) as Avg_fees FROM courses;
+Count => SELECT COUNT(cid) as CountCourses FROM courses;
+
+=======================================================================================
+
+SQL LIKE Query:-
+SELECT * FROM student WHERE studentname LIKE 's%'; => starting character find karva mate
+SELECT * FROM student WHERE studentname LIKE '%y'; => last character find karva mate
+SELECT * FROM student WHERE studentname LIKE '%r%'; => in between character find karva mate.
+
+=======================================================================================
+
+SQL IN and NOT IN Query :-
+SELECT *FROM student WHERE studentId IN (1,4);     => 1,4 id vadi student_id print karse.
+SELECT *FROM student WHERE studentId NOT IN (1,4); => 1,4 id vadi sivay student_id print karse.
+
+=======================================================================================
+
+SQL JOINS :-
+INNER JOIN => 
+SELECT * FROM enroll JOIN student ON enroll.sid=student.studentId JOIN courses ON enroll.cid=courses.cid;
+
+LEFT JOIN =>
+SELECT *FROM enroll LEFT JOIN courses ON enroll.cid=courses.cid;
+
+RIGHT JOIN =>
+SELECT *FROM enroll RIGHT JOIN courses ON enroll.cid=courses.cid;
+
+FULL JOIN =>
+SELECT *FROM enroll FULL JOIN Courses;
+
+using Aggregate functions with join :-
+
+1. COUNT() :-
+SELECT COUNT(studentId),cname FROM enroll JOIN student ON enroll.sid = student.studentId JOIN courses ON enroll.cid = courses.cid GROUP BY enroll.cid;
+
+2. SUM() :-
+SELECT SUM(fees),cid,cname FROM courses JOIN student ON student.studentId = courses.cid GROUP BY cid;
+
+with having condition 
+SELECT SUM(fees) as Total_fees,cid,cname FROM courses JOIN student ON student.studentId = courses.cid GROUP BY studentId HAVING Total_fees>70000;
+
+=======================================================================================
+
+SQL VIEW :-
+
+Syntax :- CREATE VIEW view_name as SELECT column1, column2,... FROM table_name WHERE condition;
+
+Example :- CREATE VIEW ProductByCategory as SELECT pid,pname,price,cat_id,catname from product join category on product.cat_id = category.catid;
+
+=======================================================================================
+
+SQL GRANT and REVOKE :-
+
+GRANT :- create a Permission
+REVOKE :- Remove the Permission
+
+STEP 1:- create a user account on XAMPP
+CREATE USER 'yash'@'localhost' IDENTIFIED BY '123';
+
+STEP 2:- Grant(Privilliges or Permission) :-
+GRANT ALL Privilliges ON temp_data.* TO 'yash'@'localhost';
+
+STEP 3:- REVOKE
+REVOKE UPDATE ON temp_data.ProductByCategory FROM 'yash'@'localhost';
+
+REVOKE ALL Privilliges, GRANT OPTION FROM 'yash'@'localhost';
+GRANT SELECT ON temp_data.ProductByCategory TO 'yash'@'localhost';
+FLUSH Privilliges;
+
+=======================================================================================
+
+SQL PROCEDURE:-
+
+1=>
+
+Syntax :-
+CREATE PROCEDURE procedure_name as SQL_Statement GO;
+
+Call the PROCEDURE :-  CALL procedure_name;
+
+Example :-
+CREATE PROCEDURE getAllProduct()
+SELECT *from product
+
+CALL getAllProduct();
+
+2=>
+using insert paramater in PROCEDURE :-
+
+CREATE PROCEDURE getProductById(id int)
+SELECT *FROM product WHERE pid=id;
+
+CALL getProductById(3);
+
+=======================================================================================
+
+SQL Trigger:-
+=>
+
+Step 1:- create a table
+CREATE TABLE productUpdateNotify(id int AUTO_INCREMENT PRIMARY KEY, pid int, timeof datetime);
+
+Step 2:- creating a trigger
+Syntax :-
+
+CREATE TRIGGER trigger_name
+{BEFORE | AFTER} {INSERT | UPDATE | DELETE}
+ON table_name
+FOR EACH ROW
+BEGIN
+    -- SQL statements
+END;
+
+Example:-
+CREATE TRIGGER notifyUpdate
+AFTER UPDATE ON product
+FOR EACH ROW
+INSERT INTO productUpdateNotify(pid,timeof)VALUES(old.pid,now());

@@ -1,0 +1,21 @@
+TCL => Transaction Control Language
+
+COMMIT :- Save the changes permanently to the database
+ROLLBACK :- Undo changes made in the current transaction
+SAVEPOINT :- Set a point to which you can roll back later
+
+Example :-
+
+ROLLBACK:-
+
+START TRANSCATION;
+DELETE FROM product where pid = 2;
+ROLLBACK;
+
+COMMIT :-
+START TRANSCATION;
+DELETE FROM product where pid = 2;
+COMMIT;
+
+Note :- we can use Insert and update query as well in transaction.
+

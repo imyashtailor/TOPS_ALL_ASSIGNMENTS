@@ -1,0 +1,580 @@
+1. Introduction to SQL
+
+Lab-1 :-Create a new database named school_db and a table called students with the 
+following columns: student_id, student_name, age, class, and address.
+Ans:-
+CREATE DATABASE school_db
+CREATE TABLE students(student_id INT PRIMARY KEY AUTO_INCREMENT, student_name varchar(50), age int, class varchar(20), address varchar(100))
+
+
+
+Lab 2: Insert five records into the students table and retrieve all records using the SELECT 
+statement. 
+Ans:-
+INSERT INTO students(student_name,age,class,address)VALUES("Yash",25,"12th class","101-street-Bilimora");
+INSERT INTO students(student_name,age,class,address)VALUES("Sahil",22,"10th class","104-street-Surat");
+INSERT INTO students(student_name,age,class,address)VALUES("Raj",21,"10th class","10-street-Udhna");
+INSERT INTO students(student_name,age,class,address)VALUES("Kenil",23,"12th class","100-street-Navsari");
+INSERT INTO students(student_name,age,class,address)VALUES("Tommy",20,"9th class","95-street-Vadodara");
+
+retrieve all records using the SELECT statement :-
+SELECT *FROM students; 
+
+===============================================================================================================================================
+
+2. SQL Syntax 
+
+Lab-3: Write SQL queries to retrieve specific columns (student_name and age) from the 
+students table.
+Ans:-
+
+SELECT student_name,age FROM students;
+
+Lab-4:- Write SQL queries to retrieve all students whose age is greater than 22.
+Ans :-
+
+SELECT * FROM students WHERE age > 22;
+
+===============================================================================================================================================
+
+3. SQL Constraints
+
+Lab-5 :- Create a table teachers with the following columns: teacher_id (Primary Key), 
+teacher_name (NOT NULL), subject (NOT NULL), and email (UNIQUE). 
+
+Ans:-
+CREATE TABLE teachers(teacher_id INT PRIMARY KEY AUTO_INCREMENT, teacher_name varchar(50) NOT NULL, subject varchar(50) NOT NULL, email varchar(100) UNIQUE);
+
+Lab-6 :-  Implement a FOREIGN KEY constraint to relate the teacher_id from the 
+teachers table with the students table. 
+
+Ans:- 
+CREATE TABLE Enroll(enid INT PRIMARY KEY, AUTO_INCREMENT, stu_id int, tea_id int, FOREIGN KEY(stu_id) REFERENCE students(student_id),
+FOREIGN KEY(tea_id) REFERENCE teachers(teacher_id))
+
+===============================================================================================================================================
+
+4. Main SQL Commands and Sub-commands (DDL) 
+
+Lab-7 :-  Use the CREATE command to create a database university_db.
+=> CREATE DATABASE university_db;
+
+Lab-8 :-  Create a table courses with columns: course_id, course_name, and course_credits. Set the course_id as 
+the primary key
+=>
+CREATE TABLE courses(course_id INT PRIMARY KEY AUTO_INCREMENT, course_name varchar(50), course_credits varchar(50));
+
+===============================================================================================================================================
+
+5. ALTER Command
+
+Lab-9 :- Modify the courses table by adding a column course_duration using the ALTER command. 
+=>
+ALTER TABLE courses ADD COLUMN course_duration varchar(30);
+
+Lab-10 :- Drop the course_credits column from the courses table. 
+=>
+ALTER TABLE courses DROP COLUMN course_credits;
+
+===============================================================================================================================================
+
+6. DROP Command
+
+Lab-11 :- Drop the teachers table from the school_db database. 
+=>
+DROP TABLE teachers;
+
+Lab-12 :- Drop the students table from the school_db database and verify that the table has 
+been removed.
+=>
+DROP TABLE students; 
+
+===============================================================================================================================================
+
+7. Data Manipulation Language (DML)
+
+first, create a COURSES table in university_db database.
+CREATE TABLE courses(course_id int PRIMARY KEY AUTO_INCREMENT,course_name varchar(50),course_duration varchar(30));
+
+Lab-13 :- Insert three records into the courses table using the INSERT command.
+=>
+
+INSERT INTO courses(course_id,course_name,course_duration)VALUES(1,"Python","6 Months");
+INSERT INTO courses(course_id,course_name,course_duration)VALUES(2,"Java","1 Year");
+INSERT INTO courses(course_id,course_name,course_duration)VALUES(3,"Android","8 Months");
+INSERT INTO courses(course_id,course_name,course_duration)VALUES(4,"C Language","6 Months");
+INSERT INTO courses(course_id,course_name,course_duration)VALUES(5,"C++","5 Months");
+INSERT INTO courses(course_id,course_name,course_duration)VALUES(6,"C#","7 Months");
+
+Lab-14 :- Update the course duration of a specific course using the UPDATE command. 
+=>
+UPDATE courses SET course_duration = "4 Months" where course_id = 4;
+
+Lab-15 :- Delete a course with a specific course_id from the courses table using the DELETE 
+command. 
+=>
+DELETE FROM courses WHERE course_id=5;
+
+===============================================================================================================================================
+
+8. Data Query Language(DQL)
+
+Lab-16: Retrieve all courses from the courses table using the SELECT statement.
+=>
+SELECT *FROM courses;
+
+Lab-17 :- Sort the courses based on course_duration in descending order using ORDER BY.
+=>
+SELECT *FROM courses ORDER BY course_duration DESC;
+
+Lab-18:- Limit the results of the SELECT query to show only the top two courses using LIMIT. 
+=>
+SELECT *FROM courses LIMIT 2;
+
+only Last two records show :-
+SELECT *FROM COURSES ORDER BY course_duration DESC LIMIT 2; 
+
+===============================================================================================================================================
+
+9. Data Control Language(DCL)
+
+Lab-19 :-  Create two new users user1 and user2 and grant user1 permission to SELECT from the courses table. 
+=>
+CREATE USER 'user1'@'localhost' IDENTIFIED BY '123';
+CREATE USER 'user2'@'localhost' IDENTIFIED BY '1234';
+
+Lab-20:- Revoke the INSERT permission from user1 and give it to user2.
+=>
+user1 :-
+GRANT INSERT ON courses TO user1;
+REVOKE INSERT ON courses FROM user1;
+
+user 2:-
+GRANT INSERT ON courses TO user2;
+REVOKE INSERT ON courses FROM user2;
+
+===============================================================================================================================================
+
+10. Transaction Control Language(TCL)
+
+Lab-21 :-  Insert a few rows into the courses table and use COMMIT to save the changes.
+=>
+START TRANSCATION;
+DELETE FROM courses WHERE course_id=3;
+COMMIT;
+
+Lab-22 :-   Insert additional rows, then use ROLLBACK to undo the last insert operation. 
+=>
+START TRANSCATION;
+DELETE FROM courses WHERE course_id=8;
+ROLLBACK;
+
+Lab-23 :- Create a SAVEPOINT before updating the courses table, and use it to roll back specific changes.
+=>
+START TRANSCATION;
+UPDATE courses SET course_duration = '2 Months'
+WHERE course_id = 1;
+SAVEPOINT sp1;
+ROLLBACK TO sp1;
+COMMIT;
+
+===============================================================================================================================================
+
+11. SQL JOINS
+
+Lab-24 :- Create two tables: departments and employees. 
+Perform an INNER JOIN to display employees along with their respective departments. 
+
+Step 1 :- create a two table like departments and employees
+
+CREATE TABLE Departments(dept_id int primary key,AUTO_INCREMENT, dept_name varchar(50));
+CREATE TABLE Employees(emp_id int primary key AUTO_INCREMENT, emp_name varchar(50),dept_id int FOREIGN key(dept_id) REFERENCe Departments(dept_id));
+
+Step 2 :- Insert the record on both the tables
+
+INSERT INTO Departments(dept_name)VALUES('HR');
+INSERT INTO Departments(dept_name)VALUES('IT');
+INSERT INTO Departments(dept_name)VALUES('Finance');
+
+INSERT INTO Employees(emp_name,dept_id)VALUES('Yash',2);
+INSERT INTO Employees(emp_name,dept_id)VALUES('Raj',1);
+INSERT INTO Employees(emp_name,dept_id)VALUES('Kenil',3);
+INSERT INTO Employees(emp_name,dept_id)VALUES('Sahil',2);
+INSERT INTO Employees(emp_name,dept_id)VALUES('Ankit',1);
+
+Step 3 :- INNER JOIN both the tables
+SELECT emp_id,emp_name,dept_name FROM Employees INNER JOIN Departments ON Employees.dept_id = Departments.dept_id;
+
+Lab-25:- Use a LEFT JOIN to show all departments, even those without employees.
+
+SELECT dept_name, emp_name FROM departments LEFT JOIN employees ON departments.dept_id = employees.dept_id;
+
+===============================================================================================================================================
+
+12. SQL GROUP BY
+
+Lab-26 :-  Group employees by department and count the number of employees in each department using GROUP BY.
+=>
+
+SELECT dept_id COUNT(emp_id) AS total_employees FROM employees GROUP BY dept_id;
+
+Lab-27:- Use the AVG aggregate function to find the average salary of employees in each department.
+=>
+
+first create salary row in employee table :-
+ALTER TABLE employee ADD emp_salary int;
+
+then after insert salary amount using UPDATE keyword
+and also koi bi row ne add and aeni value set karva mate karva mate use karo below command
+UPDATE employee
+SET emp_salary = CASE emp_id
+    WHEN 1 THEN 25000
+    WHEN 2 THEN 20000
+    WHEN 3 THEN 15000
+    WHEN 4 THEN 30000
+END
+WHERE emp_id IN (1,2,3,4);
+
+find the Average Salary of employyes in each department
+SELECT dept_id , AVG(salary) AS avg_salary FROM employees GROUP BY dept_id;
+
+===============================================================================================================================================
+
+13. SQL Stored Procedure
+
+Lab-28 :- Write a stored procedure to retrieve all employees from the employees table based on department.
+=>
+CREATE PROCEDURE getAllemployees()
+SELECT employees.emp_id, employees.emp_name, departments.dept_id, departments.dept_name FROM employees 
+JOIN departments ON employees.dept_id = departments.dept_id WHERE departments.dept_name = dept_name;
+
+Lab-29 :- Write a stored procedure that accepts course_id as input and returns the course details.
+=>
+CREATE PROCEDURE getCourseDetails1(IN c_id int)
+SELECT *FROM courses WHERE course_id = c_id; 
+
+
+Another way to create stored procedure:-
+DELIMITER //
+
+CREATE PROCEDURE getbookprice(IN p_BookID INT)
+BEGIN
+    SELECT Price
+    FROM book1
+    WHERE BookID = p_BookID;
+END //
+
+DELIMITER ;
+
+===============================================================================================================================================
+
+14. SQL VIEW
+
+Lab-30:- Create a view to show all employees along with their department names.
+=> CREATE VIEW getAllemployeesData AS SELECT employee.emp_name, department.dept_name FROM employee JOIN department ON
+employee.dept_id = department.dept_id;
+
+Lab-31 :-  Modify the view to exclude employees whose salaries are below $50,000. 
+=> CREATE OR REPLACE VIEW getAllemployeesData AS employee.emp_name, department.dept_name, employees.emp_salary FROM employee JOIN department 
+ON employee.dept_id = department.dept_id WHERE emp_salary < 30000;
+
+ Create a view to show only the title, author, and price of books from the books table. 
+ CREATE VIEW getbooksdetails AS SELECT book1.Title, book1.Author, book1.Price from book1;
+
+===============================================================================================================================================
+
+15. SQL TRIGGER
+
+Lab-32 :-  Create a trigger to automatically log changes to the employees table when a new 
+employee is added.
+=>
+Step 1 :- createing a table
+CREATE TABLE Employee_Log(log_id int primary key AUTO_INCREMENT, emp_id int, action varchar(50), timeof DATETIME);
+
+Step 2:- creating a Trigger
+CREATE TRIGGER AddEmployeeNotify
+AFTER INSERT ON employee
+FOR EACH ROW
+INSERT INTO AddEmployeeNotify(emp_id,action,timeof)VALUES(NEW.id,'New Employee Added',NOW());
+
+Lab-33 :- Create a trigger to update the last_modified timestamp whenever an employee record is updated.
+=>
+Step 1:- Add last_modified column in employee table
+=>
+ALTER TABLE employees ADD COLUMN last_modified DATETIME;
+
+Step 2:- creating a trigger
+=>
+DELIMITER $$
+
+CREATE TRIGGER before_employee_update
+BEFORE UPDATE ON employees
+FOR EACH ROW
+BEGIN
+    SET NEW.last_modified = NOW();
+END$$
+
+DELIMITER ;
+
+Another way or other creating trigger :-
+
+DELIMITER //
+
+CREATE TRIGGER update_books_last_modified
+BEFORE UPDATE ON book1
+FOR EACH ROW
+BEGIN
+	SET NEW.last_modified = CURRENT_TIMESTAMP;
+END //
+
+DELIMITER ;
+
+===============================================================================================================================================
+
+15. SQL PL/SQL :-
+
+Lab-34 :-  Write a PL/SQL block to print the total number of employees from the employees table.
+=>
+DELIMITER //
+CREATE PROCEDURE getemployeecount()
+BEGIN
+	DECLARE total_employee int;
+    
+    SELECT COUNT(*) INTO total_employee FROM employees;
+    
+    SELECT total_employee;
+ END //
+ DELIMITER ; 
+
+CALL getemployeecount();
+
+Lab-35 :-  Create a PL/SQL block that calculates the total sales from an orders table.
+=>
+Step 1:- create a table orders
+=>
+create table orders(order_id int primary key AUTO_INCREMENT, amount int);
+
+step 2:- create a procedure for pl/sql block
+=>
+DELIMITER //
+CREATE PROCEDURE gettotalsales()
+BEGIN
+	DECLARE total_sales int;
+	SELECT SUM(amount) INTO total_sales FROM orders;
+    SELECT total_sales;
+END //
+DELIMITER ;
+
+
+ ===============================================================================================================================================
+
+16. PL/SQL Control Structure :-
+
+Lab-36:- Write a PL/SQL block using an IF-THEN condition to check the department of an employee.
+=>
+
+DELIMITER //
+CREATE PROCEDURE check_department()
+BEGIN
+    DECLARE dept_name varchar(50);
+
+    SET dept_name = 'IT';
+
+    IF dept_name = 'IT' THEN
+        SELECT 'Employee belongs to IT Departments' AS message;
+    END IF;
+END //
+
+DELIMITER ;
+
+CALL check_department()
+
+Lab :-  Use a FOR LOOP to iterate through employee records and display their names.
+=>
+DELIMITER //
+CREATE PROCEDURE show_employee_names()
+BEGIN
+	DECLARE emp_name varchar(50);
+    DECLARE isDone int DEFAULT 0;
+    
+    DECLARE emp_cursor CURSOR FOR
+    	SELECT emp_name FROM employees;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET isDone = 1;
+    
+    OPEN emp_cursor;
+    
+    readLoop : LOOP
+    	FETCH emp_cursor INTO emp_name;
+        IF isDone = 1 THEN
+        	LEAVE readLoop;
+        END IF;
+        
+        SELECT emp_name AS Employee_Name;
+    END LOOP;
+    
+    CLOSE emp_cursor;
+END //
+
+DELIMITER ;
+
+===============================================================================================================================================
+
+17. PL/SQL CURSOR :-
+
+Lab-37 :-  Write a PL/SQL block using an explicit cursor to retrieve and display employee details. 
+=>
+
+DELIMITER //
+
+CREATE PROCEDURE getemployeedetails()
+BEGIN
+    DECLARE emp_id INT;
+    DECLARE emp_name varchar(50);
+    DECLARE emp_salary INT;
+    DECLARE isDone INT DEFAULT 0;
+
+    DECLARE employee_cursor CURSOR FOR
+        SELECT emp_id,emp_name,emp_salary FROM employees;
+    
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET isDone = 1;
+
+    OPEN employee_cursor;
+
+    readLoop : LOOP
+        FETCH employee_cursor INTO emp_id,emp_name,emp_salary;
+
+        IF isDone = 1 THEN
+                LEAVE readLoop;
+        END IF;
+
+        SELECT emp_id AS ID,
+            emp_name AS NAME,
+            emp_salary AS SALARY;
+    END LOOP;
+
+    CLOSE employee_cursor;
+END //
+
+DELIMITER ;
+
+Lab-38 :- Create a cursor to retrieve all courses and display them one by one.
+=>
+DELIMITER //
+
+CREATE PROCEDURE getallcourses()
+BEGIN
+    DECLARE course_name varchar(50);
+    DECLARE isDone INT DEFAULT 0;
+
+    DECLARE course_cursor CURSOR FOR
+        SELECT course_name FROM courses;
+    
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET isDone = 1;
+
+    OPEN course_cursor;
+
+    readLoop : LOOP
+        FETCH course_cursor INTO course_name;
+
+        IF isDone = 1 THEN
+                LEAVE readLoop;
+        END IF;
+
+        SELECT course_name AS Course_Name;
+    END LOOP;
+
+    CLOSE course_cursor;
+END //
+
+DELIMITER ;
+
+===============================================================================================================================================
+
+18. PL/SQL ROLLBACK AND SAVPOINT :-
+
+Lab-39 :- Perform a transaction where you create a savepoint, insert records, then rollback to the savepoint.
+=>
+START TRANSCATION;
+INSERT INTO employees(emp_name, dept_id, emp_salary)VALUES('Harsh',1,45000);
+SAVEPOINT sp1;
+INSERT INTO employees(emp_name, dept_id, emp_salary)VALUES('Parth',3,34000);
+ROLLBACK TO sp1
+COMMIT;
+
+Lab-40 :- Commit part of a transaction after using a savepoint and then rollback the remaining changes.
+=>
+START TRANSCATION;
+INSERT INTO employees(emp_name, dept_id, emp_salary)VALUES('Rohan',2,25000);
+SAVEPOINT sp1;
+INSERT INTO employees(emp_name, dept_id, emp_salary)VALUES('Hardik',1,54000);
+COMMIT;
+INSERT INTO employees(emp_name, dept_id, emp_salary)VALUES('Mukesh',3,39000);
+ROLLBACK;
+
+
+
+============================================================================================================
+
+Add constraint check :- Already exist table hoi to
+
+ALTER TABLE books
+CHECK constraint chk_price_positive
+CHECK (price > 0)
+
+New Table hoi to
+
+CREATE TABLE books (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(100),
+    author VARCHAR(100),
+    publisher VARCHAR(100),
+    year_of_publication INT,
+    price int CHECK (price > 0)
+);
+
+Backup create karvu hoi koi bi table nu to :-
+CREATE TABLE member_backup AS
+SELECT *FROM members; 
+
+
+Aim :-Write a PL/SQL block using constants and perform arithmetic operations on book 
+prices. 
+
+Query :-
+DELIMITER //
+
+CREATE PROCEDURE getbookpricecalc()
+BEGIN
+    DECLARE b_id INT;
+    DECLARE b_title VARCHAR(150);
+    DECLARE b_price DECIMAL(8,2);
+    
+    DECLARE discount DECIMAL(8,2);
+    DECLARE tax DECIMAL(8,2);
+    DECLARE final_price DECIMAL(8,2);
+
+    -- choose a book
+    SET b_id = 2;
+
+    -- fetch data from table
+    SELECT title, price 
+    INTO b_title, b_price
+    FROM book
+    WHERE book_id = b_id;
+
+    -- arithmetic operations
+    SET discount = b_price * 0.10;   -- 10% discount
+    SET tax = b_price * 0.05;        -- 5% tax
+    SET final_price = (b_price - discount) + tax;
+
+    -- display result
+    SELECT 
+        b_id AS Book_ID,
+        b_title AS Title,
+        b_price AS Original_Price,
+        discount AS Discount,
+        tax AS Tax,
+        final_price AS Final_Price;
+END //
+
+DELIMITER ;
