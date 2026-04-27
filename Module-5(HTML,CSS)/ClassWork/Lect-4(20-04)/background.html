@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Property</title>
+    <style>
+        .hero{
+            height: 400px;
+            width: 100%;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        #hero-1{
+            background-color: blueviolet;
+        }
+        #hero-2{
+            background-image: url(download.jpeg);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        #hero-3{
+            background-image: url(download.jpeg);
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        /*Linear - gradinat example*/
+        #hero-4{
+            background: linear-gradient(to left, red,white);
+        }
+        /*radial - gradinat example(circle)*/
+        #hero-5{
+            background: radial-gradient(circle,red,yellow,white);
+        }
+        /*conic-gradient*/
+        #hero-6{
+            background: conic-gradient(orange,white,green);
+        }
+        #hero-7{
+            background: linear-gradient(to top,red,pink);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero" id="hero-1"></div>
+    <div class="hero" id="hero-2"></div>
+    <div class="hero" id="hero-3"></div>
+    <div class="hero" id="hero-4"></div>
+    <div class="hero" id="hero-5"></div>
+    <div class="hero" id="hero-6"></div>
+    <div class="hero" id="hero-7"></div>
+</body>
+</html>

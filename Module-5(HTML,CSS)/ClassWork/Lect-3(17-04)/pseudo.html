@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo-element</title>
+    <style>
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+        }
+        .box:hover{
+            background-color: red;
+        }
+        
+        #txt1:focus{
+            background-color: gray;
+        }
+
+        #btn1:hover{
+            background-color: green;
+        }
+
+        tr:first-child{
+            background-color: white;
+        }
+
+        tr:nth-child(even){
+            background-color: rgb(197, 191, 191);
+        }
+
+        #para-2::first-letter{
+            font-size: 2em;
+            color: blue;
+        }
+
+        #para-2::first-line{
+            background-color: aqua;
+        }
+
+        h2::before{
+            content: '✭';
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <fieldset>
+        <h2>Pseudo class and elements</h2>
+        <input type="text" name="" id="txt1">
+        <button id="btn1">Click Me</button>
+        <p id="para-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Quibusdam quod dignissimos tenetur architecto nihil deleniti sint ex magni neque nesciunt laboriosam rerum obcaecati, 
+            sit corporis, alias accusamus, enim explicabo optio.</p>
+    </fieldset>
+    
+    <table border="1">
+        <tr>
+            <th>Heading-1</th>
+            <th>Heading-2</th>
+            <th>Heading-3</th>
+            <th>Heading-4</th>
+            <th>Heading-5</th>
+        </tr>
+        <tr>
+            <td>item-1</td>
+            <td>item-2</td>
+            <td>item-3</td>
+            <td>item-4</td>
+            <td>item-5</td>
+        </tr>
+        <tr>
+            <td>item-1</td>
+            <td>item-2</td>
+            <td>item-3</td>
+            <td>item-4</td>
+            <td>item-5</td>
+        </tr>
+        <tr>
+            <td>item-1</td>
+            <td>item-2</td>
+            <td>item-3</td>
+            <td>item-4</td>
+            <td>item-5</td>
+        </tr>
+        <tr>
+            <td>item-1</td>
+            <td>item-2</td>
+            <td>item-3</td>
+            <td>item-4</td>
+            <td>item-5</td>
+        </tr>
+        <tr>
+            <td>item-1</td>
+            <td>item-2</td>
+            <td>item-3</td>
+            <td>item-4</td>
+            <td>item-5</td>
+        </tr>
+    </table>
+</body>
+</html>

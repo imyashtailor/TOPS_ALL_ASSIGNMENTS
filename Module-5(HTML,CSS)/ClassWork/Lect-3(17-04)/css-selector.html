@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            background-color: aliceblue;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        p{
+            background-color: yellow;
+            color: white;
+        }
+
+        #para-1{
+            background-color: aquamarine;
+            color: blueviolet;
+        }
+
+        .class-1{
+            background-color: bisque;
+            color: blue;
+        }
+
+        .one p{
+            background-color: blueviolet;
+            color: royalblue;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h1>Css Selector</h1>
+    <h3>universal Selector(*)</h3>
+    <code>
+        *{
+            background-color: aliceblue;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    </code>
+
+    <h3>Element Selector(p,h1,span)</h3>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, molestiae impedit. Vitae illum asperiores deleniti blanditiis, 
+        nam voluptatibus, exercitationem facilis nesciunt, praesentium inventore dolor amet quam omnis sit molestiae iste.
+    </p>
+    <code>
+        p{
+            background-color: black;
+            color: white;
+        }
+    </code>
+    <h3>Id Selector(#)</h3>
+    <p id="para-1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Eius commodi omnis soluta sunt explicabo, hic repudiandae repellat officia sequi iste ullam dolor natus ex! 
+        Minus veniam aperiam beatae tenetur corporis!
+    </p>
+    <code>
+        #para-1{
+            background-color: aquamarine;
+            color: blueviolet;
+        }
+    </code>
+
+    <h3>Class Selector(.)</h3>
+    <p class="class-1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Eius commodi omnis soluta sunt explicabo, hic repudiandae repellat officia sequi iste ullam dolor natus ex! 
+        Minus veniam aperiam beatae tenetur corporis!
+    </p>
+    <code>
+        .class-1{
+            background-color: bisque;
+            color: blue;
+        }
+    </code>
+
+    <h3 class="one">Descendent Selector</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, architecto. Quo, nihil, 
+        veniam cum harum perspiciatis adipisci quos dolorem inventore impedit accusamus similique laudantium accusantium doloribus, illo neque. Voluptatem, accusantium!</p>
+    <code>
+       .one p{
+            background-color: blueviolet;
+            color: white;
+        } 
+    </code>
+</body>
+</html>

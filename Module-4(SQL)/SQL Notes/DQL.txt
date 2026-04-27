@@ -31,6 +31,9 @@ SELECT *FROM student WHERE NOT studentId=1; => NOT
 SQL LIMIT :-
 SELECT *FROM student LIMIT 0,2;
 
+second last record upload karva mate:-
+SELECT *FROM book ORDER BY book_id DESC LIMIT 1 OFFSET 1;
+
 =======================================================================================
 
 SQL Aggregate Functions :-
