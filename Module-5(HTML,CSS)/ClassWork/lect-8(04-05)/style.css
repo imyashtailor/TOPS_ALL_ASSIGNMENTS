@@ -1,0 +1,482 @@
+/* ====================== GLOBAL ====================== */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+
+/* ====================== HERO SECTION ====================== */
+
+.main{
+    width: 100%;
+    height: 100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.6),
+    rgba(0,0,0,0.7)),
+    url(Images/back-gym.png);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ====================== NAVBAR ====================== */
+
+nav{
+    width: 100%;
+    height: 80px;
+    padding: 0px 100px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-div label{
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* ====================== NAV LINKS ====================== */
+
+.navbar{
+    display: flex;
+    gap: 30px;
+}
+
+.navbar a{
+    position: relative;
+    text-decoration: none;
+    color: #E5E7EB;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.navbar a:hover{
+    color: #EF4444;
+}
+
+.navbar a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+
+    width: 0%;
+    height: 2px;
+
+    background: #EF4444;
+    transition: 0.3s ease;
+}
+
+.navbar a:hover::after{
+    width: 100%;
+}
+
+/* ====================== SEARCH BOX ====================== */
+
+.search-div input{
+    padding: 12px 18px;
+
+    border: 1px solid #374151;
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.1);
+    color: white;
+
+    outline: none;
+}
+
+.search-div input::placeholder{
+    color: #D1D5DB;
+}
+
+/* ====================== HERO TEXT ====================== */
+
+.hero-text{
+    height: calc(100vh - 80px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+    text-align: center;
+}
+
+.hero-text h1{
+    color: white;
+    font-size: 5rem;
+    font-weight: 800;
+
+    text-shadow: 4px 4px 10px rgba(0,0,0,0.5);
+}
+
+.hero-text p{
+    color: #D1D5DB;
+    font-size: 1.2rem;
+
+    max-width: 700px;
+    line-height: 1.8;
+}
+
+/* ====================== BUTTON ====================== */
+
+.hero-text button,
+.btn{
+    padding: 14px 32px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #EF4444;
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.hero-text button:hover,
+.btn:hover{
+    background: white;
+    color: #EF4444;
+
+    transform: translateY(-3px);
+}
+
+/* ====================== ABOUT SECTION ====================== */
+
+.about{
+    padding: 80px 10%;
+    background: #111827;
+}
+
+.sub-head{
+    font-size: 3rem;
+    color: #EF4444;
+
+    font-weight: 700;
+    text-align: center;
+
+    margin-bottom: 60px;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.about-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.about-col{
+    flex: 1 1 450px;
+}
+
+.about-col h2{
+    color: #EF4444;
+}
+
+.about-col h3{
+    font-size: 2.5rem;
+    color: white;
+
+    margin-bottom: 25px;
+    line-height: 1.3;
+}
+
+.about-col p{
+    color: #D1D5DB;
+
+    line-height: 1.9;
+    margin-bottom: 20px;
+
+    font-size: 1.05rem;
+}
+
+.about-col img{
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    box-shadow: 0px 10px 30px rgba(0,0,0,0.4);
+
+    transition: 0.4s ease;
+}
+
+.about-col img:hover{
+    transform: scale(1.03);
+}
+
+/* =====================Service========================= */
+.service{
+    margin: 50px 0px;
+    padding: 50px 100px;
+}
+.service-row{
+    margin-top: 50px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(3,1fr);
+}
+.card{
+    text-align: center;
+    color: #111827;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.35);
+    padding: 20px;
+    margin: 35px;
+    transition: 0.4s ease;
+}
+.card:hover{
+    transform: translateY(-10px);
+
+    box-shadow: 0px 0px 30px rgba(138, 72, 72, 0.4);
+}
+.card-img{
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.card-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius:10%;
+    display: block;
+}
+.card-button .btn{
+    margin-top: 10px;
+}
+
+#sub-head{
+    font-size: 3rem;
+    color: #EF4444;
+
+    font-weight: 700;
+    text-align: center;
+
+    margin-top: 50px;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* ====================== FOOTER ====================== */
+
+.footer{
+    background: #0B1120;
+    padding-top: 70px;
+}
+
+.footer-container{
+    width: 90%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 40px;
+
+    padding-bottom: 50px;
+}
+
+.footer-box h2,
+.footer-box h3{
+    color: #EF4444;
+    margin-bottom: 20px;
+}
+
+.footer-box p{
+    color: #D1D5DB;
+    line-height: 1.8;
+    margin-bottom: 12px;
+}
+
+/* ====================== QUICK LINKS ====================== */
+
+.footer-box ul{
+    list-style: none;
+}
+
+.footer-box ul li{
+    margin-bottom: 12px;
+}
+
+.footer-box ul li a{
+    color: #D1D5DB;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-box ul li a:hover{
+    color: #EF4444;
+    padding-left: 8px;
+}
+
+/* ====================== SOCIAL ICONS ====================== */
+
+.social-icons{
+    margin-top: 20px;
+
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a{
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #1F2937;
+    color: white;
+
+    border-radius: 10%;
+
+    text-decoration: none;
+    font-size: 1.1rem;
+
+    transition: 0.4s ease;
+}
+
+.social-icons a:hover{
+    background: #EF4444;
+    transform: translateY(-5px);
+}
+
+/* ====================== MAP ====================== */
+
+.footer-box iframe{
+    width: 100%;
+    height: 250px;
+    border-radius: 15px;
+}
+
+/* ====================== FOOTER BOTTOM ====================== */
+
+.footer-bottom{
+    border-top: 1px solid #1F2937;
+    text-align: center;
+
+    padding: 20px 0px;
+}
+
+.footer-bottom p{
+    color: #9CA3AF;
+    font-size: 0.95rem;
+}
+
+/* ====================== CONTACT FORM ====================== */
+
+.contact-form{
+    background: #1F2937;
+    padding: 40px;
+    border-radius: 20px;
+
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+}
+
+.contact-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea{
+    width: 100%;
+
+    padding: 15px 20px;
+
+    border: 1px solid #374151;
+    border-radius: 12px;
+
+    background: #111827;
+    color: white;
+
+    outline: none;
+    resize: none;
+
+    font-size: 1rem;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder{
+    color: #9CA3AF;
+}
+
+.contact-form .btn{
+    width: 100%;
+}
+
+/* ====================== FOOTER CONTACT FORM ====================== */
+
+.footer-form form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-form input,
+.footer-form textarea{
+    width: 100%;
+
+    padding: 14px 18px;
+
+    border: 1px solid #374151;
+    border-radius: 10px;
+
+    background: #111827;
+    color: white;
+
+    outline: none;
+    resize: none;
+
+    font-size: 1rem;
+
+    transition: 0.3s ease;
+}
+
+.footer-form input:focus,
+.footer-form textarea:focus{
+    border-color: #EF4444;
+}
+
+.footer-form input::placeholder,
+.footer-form textarea::placeholder{
+    color: #9CA3AF;
+}
+
+.footer-form .btn{
+    width: 100%;
+    margin-top: 5px;
+}
